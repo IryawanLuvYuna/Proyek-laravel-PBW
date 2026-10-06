@@ -1,0 +1,12 @@
+<?php
+
+use App\Http\Controllers\PublikasiController;
+use App\Http\Controllers\insertController;
+use App\Http\Controllers\Requests\StoreNoteRequest;
+
+Route::get('/publikasi', [PublikasiController::class, 'index'])->name('index');
+
+Route::get('/form', [PublikasiController::class, 'form'])->name('form');
+Route::post('/form/store', [PublikasiController::class, 'store'])->name('form.store');
+
+Route::get('/beranda', [PublikasiController::class, 'beranda'])->name('beranda');
