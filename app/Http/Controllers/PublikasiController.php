@@ -33,4 +33,10 @@ class PublikasiController extends Controller
     Publikasi::create($data);
     return redirect()->back()->with('success','Publikasi berhasil ditambahkan!');
   }
+
+  public function destroy(Publikasi $publikasi)
+  {
+    $publikasi->delete();
+    return redirect()->back()->with('success','Publikasi berhasil dihapus!');
+  }
 }

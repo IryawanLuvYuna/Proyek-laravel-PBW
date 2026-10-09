@@ -36,21 +36,27 @@
         <th class="text-white" style="background-color: #0093DD;">Judul</th>
         <th class="text-white" style="background-color: #0093DD;">Tanggal Rilis</th>
         <th class="text-white" style="background-color: #0093DD;">Sampul</th>
-        <th class="text-white rounded-end-3" style="background-color: #0093DD;">Aksi</th>
+        <th class="text-white text-center rounded-end-3" style="background-color: #0093DD;">Aksi</th>
         </tr>
       </thead>
       <tbody>
         @foreach ($publikasi as $item)
         <tr>
-          <td>{{ $loop->iteration }}</td>
+          <td>{{ $loop->iteration + $publikasi->firstItem() - 1 }}</td>
           <td>{{ Str::limit($item->judul,70) }}</td>
           <td>{{ $item->tanggal_rilis }}</td>
           <td>
             <img src="/images/{{ $item->sampul }}" alt="{{ $item->judul }}" width="48">
           </td>
           <td>
-            <a href="#" class="btn btn-success btn-sm">Edit</a>
-            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+            <div class="d-flex flex-row justify-content-center">
+              <a href="#" class="btn btn-success btn-sm">Edit</a>
+              <form action="{{ route('publikasi.destroy', $item->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Yakin ingin menghapus publikasi ini?')">Hapus</button>
+              </form>
+            </div>
           </td>
         </tr>
         @endforeach

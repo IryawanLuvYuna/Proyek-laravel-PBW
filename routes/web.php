@@ -9,6 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/publikasi', [PublikasiController::class, 'index'])->name('index');
+Route::delete('/publikasi/{publikasi}', [PublikasiController::class, 'destroy'])->name('publikasi.destroy');
 
 Route::get('/form', [PublikasiController::class, 'form'])->name('form');
 Route::post('/form/store', [PublikasiController::class, 'store'])->name('form.store');
